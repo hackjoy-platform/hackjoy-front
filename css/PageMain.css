@@ -1,0 +1,196 @@
+li {
+    Font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+    font-size: 14px;
+    font-weight: bold;
+    margin-left: 20px;
+}
+
+.dropdown-menu>li {
+    margin-left: 0%;
+}
+
+.containerImage {
+    display: inline-block;
+    position: relative;
+}
+
+.textoImage {
+    font-family: 'VALORANT', sans-serif;
+    position: absolute;
+    top: 50%;
+    right: 33%;
+    color: #dc3d4b;
+    font-size: 400%;
+    text-shadow: 0px 0px 5px #dc3d4b;
+}
+
+.titulos {
+    margin-top: 6%;
+    margin-left: 6%;
+    margin-right: 6%;
+    font-family: 'VALORANT', sans-serif;
+    font-weight: bold;
+    color: red;
+}
+
+.configCard {
+    text-align: center;
+    color: black;
+}
+
+.configTituloCursos {
+    margin-top: 10%;
+    text-align: right;
+    border-right: 2px solid black;
+    display: inline-block;
+    position: relative;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+.configComunidade {
+    text-align: center;
+    margin-top: 10%;
+    border-right: 2px solid black;
+    display: inline-block;
+    position: relative;
+    white-space: nowrap;
+    overflow: hidden;
+    animation: blinkCursor 500ms steps(60) infinite normal;
+}
+
+@keyframes revealBlock {
+    from {
+        transform: translateX(0);
+    }
+
+    to {
+        transform: translateX(100%);
+    }
+}
+
+/* Configuração de animação de digitação*/
+@keyframes blinkCursor {
+    from {
+        border-right-color: black;
+    }
+
+    to {
+        border-right-color: transparent;
+    }
+}
+
+.typing-animation-noticias {
+    animation: blinkCursor 500ms steps(60) infinite normal, typing-noticias 1s 1s normal both;
+    animation-play-state: paused;
+}
+
+/*configuração de animação do texto sendo digitado*/
+@keyframes typing-noticias {
+    from {
+        width: 0em;
+    }
+
+    to {
+        width: 9.6em;
+    }
+}
+
+@keyframes blinkCursor-curso {
+    from {
+        border-right-color: black;
+    }
+
+    to {
+        border-right-color: transparent;
+    }
+}
+
+.typing-animation-cursos {
+    animation: blinkCursor-curso 500ms steps(60) infinite normal, typing-curso 3s 1s normal both;
+    animation-play-state: paused;
+}
+
+@keyframes typing-curso {
+    from {
+        width: 0%;
+    }
+
+    to {
+        width: 100%;
+    }
+}
+
+.configNoticias {
+    border-right: 2px solid black;
+    display: inline-block;
+    position: relative;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+.txtValorant {
+    Font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.VenhaPraHackJoy {
+    text-decoration: none;
+    color: black;
+}
+
+img {
+    width: 100%;
+}
+
+li a {
+    z-index: 1000;
+}
+
+body {
+    margin: 0px auto;
+    background-image: url("/front-Hackjoy/Image/backImagePagemain.png");
+    background-repeat: repeat-y;
+    background-position: center;
+}
+
+@media (min-width: 992px) {
+    .ddMAIS {
+        display: none;
+    }
+
+    .configNoticias {
+        font-size: 400%;
+    }
+
+    .configComunidade {
+        font-size: 400%;
+    }
+
+    .configTituloCursos {
+        font-size: 400%;
+    }
+}
+
+@media (max-width: 992px) {
+    .nav-item {
+        display: none;
+    }
+
+    .imgLogo {
+        display: none;
+    }
+
+    .configNoticias {
+        font-size: 200%;
+    }
+
+    .configComunidade {
+        font-size: 200%;
+    }
+
+    .configTituloCursos {
+        font-size: 190%;
+    }
+}
