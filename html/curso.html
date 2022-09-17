@@ -9,6 +9,7 @@
     <title>Hack.joy</title>
 
     <link rel="stylesheet" type="text/css" href="../css/index.css">
+    <link rel="stylesheet" type="text/css" href="../css/curso.css">
 
     <link rel="stylesheet"
         href="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.min.css">
@@ -158,33 +159,54 @@
                         <div class="container-fluid">
                             <div>
                                 <!-- Começo textos Pagina -->
-                                <div>
-                                    Nome: <br>
-                                    <input style="width: 100%;" type="text">
+                                <!-- Teste -->
+                                <div class="container">
+
+                                    <form>
+
+                                        <div class="group">
+                                            <input id="name" type="text" required>
+                                            <span class="highlight"></span>
+                                            <span class="bar"></span>
+                                            <label>Nome:</label>
+                                        </div>
+                                        <br>
+                                        <div class="group">
+                                            <input id="about" type="text" required>
+                                            <span class="highlight"></span>
+                                            <span class="bar"></span>
+                                            <label>Sobre o curso</label>
+                                        </div>
+                                        <br>
+                                        <div class="group">
+                                            <input id="description" type="text" required>
+                                            <span class="highlight"></span>
+                                            <span class="bar"></span>
+                                            <label>Descrição:</label>
+                                        </div>
+                                        <br>
+                                        <div class="group">
+                                            <label style="color: black;">Certificado:</label><br><br>
+                                            <select id="list" name="nationality_cadastro" required>
+                                                <option></option>
+                                            </select>
+                                        </div>
+                                        <br>
+                                        <div class="group">
+                                            <label style="color: black;">Imagem:</label><br><br>
+                                            <input onchange="imagemAlterada(event);" type="file" id="img" name="img"
+                                                accept="image/*" required>
+                                        </div>
+                                        <div>
+                                            <button class="btn btn-secondary btn-lg" type="button"
+                                                id="cadastroCurso">Enviar</button>
+                                        </div>
+
+
+                                    </form>
+
                                 </div>
-                                <br>
-                                <div>
-                                    Sobre o curso: <br>
-                                    <input style="width: 100%;" type="text">
-                                </div>
-                                <br>
-                                <div>
-                                    Descrição: <br>
-                                    <input style="width: 100%;" type="text">
-                                </div>
-                                <br>
-                                <div>
-                                    Imagem:<br>
-                                    <input onchange="imagemAlterada(event);" style="width: 24%;" type="file" id="img"
-                                        name="img" accept="image/*">
-                                </div>
-                                <br>
-                                <div>
-                                    Certificado: <br>
-                                    <select id="list" name="nationality_cadastro">
-                                        <option></option>
-                                    </select>
-                                </div>
+                                <!-- Teste -->
                                 <!-- Fim textos Pagina -->
                             </div>
                         </div>

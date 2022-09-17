@@ -1,6 +1,10 @@
+let imagemEmBase64 = null;
+
 function imagemAlterada(event) {
     var reader = new FileReader();
     reader.onload = function () {
+        imagemEmBase64 = reader.result;
+
         $('.note-editable').css('background-image', 'url(' + reader.result + ')');
         $('.note-editable').css('background-size', '842px 595px');
     }
@@ -16,25 +20,55 @@ function certificadoList() {
 
         for (let i = 0; i < data.length; i++) {
             $("#list").append(
-                "<option>" + listCertificado[i]["name"] + "</option>"
-                /*"<tr>" +
-                "<th scope='row'>" + listCertificado[i]["id"] + "</th>" +
-                "<td>" +
-                listCertificado[i]["name"] +
-                "</td>" +
-
-                "<td>" +
-                "<a href='../html/certificadoEdit.html?id=" + listCertificado[i]["id"] + "' class='btn btn-outline-secondary' id_certificado=" + listCertificado[i]["id"] + ">Abrir Certificado</a>" +
-                "</td>" +
-
-                "</tr>"*/
+                "<option>" + listCertificado[i]["id"] + "-" + listCertificado[i]["name"] + "</option>"
             );
         }
     }, true);
 }
 
+function cadastrarCurso(name, about, description, image, id_certificate) {
+    $("#btnsubmit").attr("disabled", "disabled");
+    $("#btnsubmit").html(
+        "<span class='spinner-border spinner-border-sm' role='status' aria-hidden='true'></span>" +
+        "<span class='visually-hidden'>Carregando...</span>&nbsp;&nbsp;Carregando..."
+    );
+
+
+
+    let curso = {
+        "id_certificate": id_certificate,
+        "name": name,
+        "about": about,
+        "description": description,
+        "image": image,
+    }
+
+    post("https://hackjoy-api.herokuapp.com/courses/new", curso, function (data, textStatus, xhr) {
+
+
+        $("#btnsubmit").removeAttr("disabled");
+        $("#btnsubmit").html("Cadastrar");
+
+    })
+}
+
 $(document).ready(() => {
 
     certificadoList();
+
+    $("#cadastroCurso").on("click", (e) => {
+        e.preventDefault();
+
+        let name = $("#name").val();
+        let about = $("#about").val();
+        let description = $("#description").val();
+        let image = imagemEmBase64;
+
+        let selectCertificate = document.getElementById("list");
+        let id_certificate = selectCertificate.options[selectCertificate.selectedIndex].text;
+        id_certificate = id_certificate.charAt(0);
+
+        cadastrarCurso(name, about, description, image, id_certificate);
+    });
 
 })
