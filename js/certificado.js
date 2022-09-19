@@ -32,7 +32,7 @@ function cadastrarCertificado(name, image, phrase) {
                 buttons: true,
                 dangerMode: false,
             }).then((willDelete) => {
-                window.location = "login.html";
+                window.location = "certificadoList.html";
             });
         }
 

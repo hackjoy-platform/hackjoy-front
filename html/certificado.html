@@ -9,6 +9,7 @@
     <title>Hack.joy</title>
 
     <link rel="stylesheet" type="text/css" href="../css/index.css">
+    <link rel="stylesheet" type="text/css" href="../css/certificado.css">
 
     <link rel="stylesheet"
         href="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.min.css">
@@ -164,15 +165,17 @@
                         <div class="container-fluid">
                             <div>
                                 <!-- Começo textos pagina-->
-                                <div>
-                                    Nome:<br>
-                                    <input id="nome" style="width: 100%;" type="text">
+                                <div class="group">
+                                    <input id="name" type="text" required>
+                                    <span class="highlight"></span>
+                                    <span class="bar"></span>
+                                    <label>Nome</label>
                                 </div>
                                 <br>
-                                <div>
-                                    Imagem:<br>
-                                    <input onchange="imagemAlterada(event);" style="width: 24%;" type="file" id="files"
-                                        name="files" ref="files" accept="image/*">
+                                <div class="group">
+                                    <label style="color: black;">Imagem:</label><br><br>
+                                    <input onchange="imagemAlterada(event);" type="file" id="img" name="img"
+                                        accept="image/*" required>
                                 </div>
                                 <br>
                                 <div>

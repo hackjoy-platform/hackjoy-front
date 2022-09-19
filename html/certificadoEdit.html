@@ -20,6 +20,7 @@
 
     <!-- My css files-->
     <link rel="stylesheet" type="text/css" href="../css/certificado.css">
+    <link rel="stylesheet" type="text/css" href="../css/index.css">
 
     <!-- summernote css -->
     <link href="../imports/summernote-0.8.11-dist/dist/summernote-bs4.css" rel="stylesheet">
@@ -36,7 +37,7 @@
 <body>
 
     <div class="wrapper">
-        <div class="col-auto col-md-3 col-xl-2 bg-dark" id="s">
+        <div class="col-auto col-md-3 col-xl-2 bg-dark" id="sidebar">
             <div class="d-flex flex-column align-items-start px-3 pt-2 text-white min-vh-100">
                 <div class="d-flex flex-row" id="topMenu">
                     <a href="PageMain.html"
@@ -51,7 +52,7 @@
                 </div>
                 <ul class="nav nav-pills flex-column mb-auto mb-0 align-items-start" id="menu">
                     <li class="nav-item">
-                        <a href="#" class="nav-link align-middle px-0">
+                        <a href="painel_instructor.html" class="nav-link align-middle px-0">
                             <i class="fs-4 bi-house"></i> <span class="ms-1 d-sm-inline">Pagina principal</span>
                         </a>
                     </li>
@@ -124,7 +125,7 @@
                         id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
                         <img src="../Image/perfil.png" id="img_instructor" alt="instructor" width="30" height="30"
                             class="rounded-circle">
-                        <span id="instructor_name">user</span>
+                        <span id="instructor_name" class="instructor_name">user</span>
                     </a>
                     <ul class="dropdown-menu dropdown-menu-dark text-small shadow">
                         <li><a class="dropdown-item" href="#">Configurações</a></li>
@@ -165,15 +166,16 @@
                         <div class="container-fluid">
                             <div>
                                 <!-- Começo textos Pagina -->
-                                <div>
-                                    Nome:<br>
-                                    <input style="width: 100%;" type="text" id="name" class="name">
+                                <div class="group">
+                                    <input id="name" type="text" required>
+                                    <span class="highlight"></span>
+                                    <span class="bar"></span>
+                                    <label>Nome</label>
                                 </div>
                                 <br>
-                                <div>
-                                    Imagem:<br>
-                                    <input onchange="imagemAlterada(event);" style="width: 24%;" type="file" id="img"
-                                        name="img" accept="image/*">
+                                <div class="group">
+                                    <label style="color: black;">Imagem:</label><br><br>
+                                    <input type="file" id="img" name="img" accept="image/*" required>
                                 </div>
                                 <br>
                                 <div>
@@ -184,7 +186,6 @@
                                 <div>
                                     <button class="btn btn-secondary btn-lg" type="button"
                                         id="cadastroCurriculo">Finalizar</button>
-                                    <button class="btn btn-primary btn-lg" type="button" id="alterar">Alterar</button>
                                 </div>
                                 <!-- Fim textos Pagina -->
                             </div>

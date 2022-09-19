@@ -20,7 +20,7 @@ function certificadoList() {
 
         for (let i = 0; i < data.length; i++) {
             $("#list").append(
-                "<option>" + listCertificado[i]["id"] + "-" + listCertificado[i]["name"] + "</option>"
+                "<option>" + listCertificado[i]["id"] + " - " + listCertificado[i]["name"] + "</option>"
             );
         }
     }, true);
@@ -44,6 +44,16 @@ function cadastrarCurso(name, about, description, image, id_certificate) {
     }
 
     post("https://hackjoy-api.herokuapp.com/courses/new", curso, function (data, textStatus, xhr) {
+        if (typeof data == "object") {
+            swal({
+                title: "Cadastrado com sucesso!",
+                icon: "success",
+                buttons: true,
+                dangerMode: false,
+            }).then((willDelete) => {
+                window.location = "cursoList.html";
+            });
+        }
 
 
         $("#btnsubmit").removeAttr("disabled");
@@ -66,9 +76,10 @@ $(document).ready(() => {
 
         let selectCertificate = document.getElementById("list");
         let id_certificate = selectCertificate.options[selectCertificate.selectedIndex].text;
-        id_certificate = id_certificate.charAt(0);
 
-        cadastrarCurso(name, about, description, image, id_certificate);
+        const [, match] = id_certificate.match(/(\S+) /) || [];
+
+        cadastrarCurso(name, about, description, image, match);
     });
 
 })

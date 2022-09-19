@@ -4,7 +4,6 @@ function verCertificado(id) {
         console.log(data);
 
         document.getElementById("name").value = data["name"];
-        document.querySelector(".frase").innerHTML = "teste";
         $("#frase").append(data['phrase']);
 
         iniciaSummernote()
@@ -51,33 +50,27 @@ $(document).ready(() => {
     let getUrl = (window.location).href;
     let id = getUrl.substring(getUrl.lastIndexOf('=') + 1);
 
+
     verCertificado(id);
-    document.getElementById('name').disabled = true;
-    document.getElementById('img').disabled = true;
 
-    //esse não está funcionando, não está desabilitando.
-    document.getElementById('frase').disabled = true;
+    $('#cadastroCurriculo').on('click', (e) => {
+        e.preventDefault();
+        let certificado = {};
 
-    $('#alterar').on('click', () => {
-        document.getElementById('name').disabled = false;
-        document.getElementById('img').disabled = false;
+        if (document.getElementById('img').value != null) {
 
-        $('#cadastroCurriculo').on('click', (e) => {
-            e.preventDefault();
-
-            let certificado = {
+            certificado = {
                 "name": document.getElementById('name').value,
                 "image": document.getElementById('img').value,
                 "phrase": document.getElementById('frase').value,
             }
+        } else {
+            certificado = {
+                "name": document.getElementById('name').value,
+                "phrase": document.getElementById('frase').value,
+            }
+        }
 
-            alterarCertificado(certificado, id);
-        })
-    });
-
-    $('#cadastroCurriculo').on('click', (e) => {
-        e.preventDefault();
-
-        window.location = "certificadoList.html";
-    });
+        alterarCertificado(certificado, id);
+    })
 })
