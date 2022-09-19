@@ -1,7 +1,23 @@
+let imagemEmBase64 = null;
+let image = 0;
+
+function imagemAlterada(event) {
+    var reader = new FileReader();
+    reader.onload = function () {
+        imagemEmBase64 = reader.result;
+
+        $('.note-editable').css('background-image', 'url(' + reader.result + ')');
+        $('.note-editable').css('background-size', '842px 595px');
+    }
+    reader.readAsDataURL(event.target.files[0]);
+}
+
 function verCertificado(id) {
 
     get("https://hackjoy-api.herokuapp.com/certificates/" + id, {}, function (data, textStatus, xhr) {
         console.log(data);
+
+        image = data["image"];
 
         document.getElementById("name").value = data["name"];
         $("#frase").append(data['phrase']);
@@ -11,10 +27,25 @@ function verCertificado(id) {
 }
 
 function alterarCertificado(certificado, id) {
+    $("#certificadoEdit").attr("disabled", "disabled");
+    $("#certificadoEdit").html(
+        "<span class='spinner-border spinner-border-sm' role='status' aria-hidden='true'></span>" +
+        "<span class='visually-hidden'>Carregando...</span>&nbsp;&nbsp;Carregando..."
+    );
 
     put("https://hackjoy-api.herokuapp.com/certificates/" + id, certificado, function (data, textStatus, xhr) {
 
-        window.location = "certificadoList.html";
+        swal({
+            title: "Editado com sucesso!",
+            icon: "success",
+            buttons: true,
+            dangerMode: false,
+        }).then((willDelete) => {
+            window.location = "certificadoList.html";
+        });
+
+        $("#certificadoEdit").removeAttr("disabled");
+        $("#certificadoEdit").html("Cadastrar");
     });
 }
 
@@ -53,22 +84,17 @@ $(document).ready(() => {
 
     verCertificado(id);
 
-    $('#cadastroCurriculo').on('click', (e) => {
+    $('#certificadoEdit').on('click', (e) => {
         e.preventDefault();
-        let certificado = {};
 
-        if (document.getElementById('img').value != null) {
+        if (imagemEmBase64 != null) {
+            image = imagemEmBase64;
+        }
 
-            certificado = {
-                "name": document.getElementById('name').value,
-                "image": document.getElementById('img').value,
-                "phrase": document.getElementById('frase').value,
-            }
-        } else {
-            certificado = {
-                "name": document.getElementById('name').value,
-                "phrase": document.getElementById('frase').value,
-            }
+        let certificado = {
+            "name": document.getElementById('name').value,
+            "image": image,
+            "phrase": document.getElementById('frase').value,
         }
 
         alterarCertificado(certificado, id);

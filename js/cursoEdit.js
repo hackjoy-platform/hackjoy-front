@@ -1,4 +1,5 @@
 let imagemEmBase64 = null;
+let image = 0;
 
 function imagemAlterada(event) {
     var reader = new FileReader();
@@ -12,10 +13,25 @@ function imagemAlterada(event) {
 }
 
 function alterarCurso(curso, id) {
+    $("#editCurso").attr("disabled", "disabled");
+    $("#editCurso").html(
+        "<span class='spinner-border spinner-border-sm' role='status' aria-hidden='true'></span>" +
+        "<span class='visually-hidden'>Carregando...</span>&nbsp;&nbsp;Carregando..."
+    );
 
     put("https://hackjoy-api.herokuapp.com/courses/" + id, curso, function (data, textStatus, xhr) {
 
-        window.location = "cursoList.html";
+        swal({
+            title: "Editado com sucesso!",
+            icon: "success",
+            buttons: true,
+            dangerMode: false,
+        }).then((willDelete) => {
+            window.location = "cursoList.html";
+        });
+
+        $("#editCurso").removeAttr("disabled");
+        $("#editCurso").html("Cadastrar");
     })
 
 }
@@ -24,6 +40,8 @@ function verCurso(id) {
 
     get("https://hackjoy-api.herokuapp.com/courses/" + id, {}, function (data, textStatus, xhr) {
         console.log(data);
+
+        image = data["image"];
 
         document.getElementById("name").value = data["name"];
         document.getElementById("about").value = data["about"];
@@ -50,24 +68,7 @@ function verCurso(id) {
     });
 }
 
-/*function certificadoList() {
-
-    get("https://hackjoy-api.herokuapp.com/certificates", {}, function (data, textStatus, xhr) {
-
-        var listCertificado = data;
-        console.log(listCertificado);
-
-        for (let i = 0; i < data.length; i++) {
-            $("#list").append(
-                "<option>" + listCertificado[i]["id"] + " - " + listCertificado[i]["name"] + "</option>"
-            );
-        }
-    }, true);
-}*/
-
 $(document).ready(() => {
-
-    //certificadoList();
 
     let getUrl = (window.location).href;
     let id = getUrl.substring(getUrl.lastIndexOf('=') + 1);
@@ -77,30 +78,24 @@ $(document).ready(() => {
     $('#editCurso').on('click', (e) => {
         e.preventDefault();
 
-        let curso = {};
-        let image = imagemEmBase64;
+        if (imagemEmBase64 != null) {
+            image = imagemEmBase64;
+        }
+
         let selectCertificate = document.getElementById("list");
+
         let id_certificate = selectCertificate.options[selectCertificate.selectedIndex].text;
         const [, match] = id_certificate.match(/(\S+) /) || [];
 
-        if (document.getElementById('img').value != null) {
-
-            curso = {
-                "name": document.getElementById('name').value,
-                "about": document.getElementById("about").value,
-                "description": document.getElementById("description").value,
-                "id_certificate": match,
-                "image": image,
-            }
-        } else {
-            curso = {
-                "name": document.getElementById('name').value,
-                "about": document.getElementById("about").value,
-                "description": document.getElementById("description").value,
-                "id_certificate": match,
-            }
+        let curso = {
+            "name": document.getElementById('name').value,
+            "about": document.getElementById("about").value,
+            "description": document.getElementById("description").value,
+            "id_certificate": match,
+            "image": image,
         }
 
+        console.log(curso);
         alterarCurso(curso, id);
     })
 })
