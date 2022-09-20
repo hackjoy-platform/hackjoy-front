@@ -23,6 +23,7 @@ function certificadoList() {
                 "<option>" + listCertificado[i]["id"] + " - " + listCertificado[i]["name"] + "</option>"
             );
         }
+        document.getElementById("loading-certificate").style.display = "none";
     }, true);
 }
 

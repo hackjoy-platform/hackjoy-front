@@ -44,8 +44,11 @@ function verCurso(id) {
         image = data["image"];
 
         document.getElementById("name").value = data["name"];
+        document.getElementById("loading-name").style.display = "none";
         document.getElementById("about").value = data["about"];
+        document.getElementById("loading-about").style.display = "none";
         document.getElementById("description").value = data["description"];
+        document.getElementById("loading-description").style.display = "none";
 
         let idCertificadoCurso = data["id_certificate"];
         get("https://hackjoy-api.herokuapp.com/certificates", {}, function (data, textStatus, xhr) {
@@ -64,6 +67,7 @@ function verCurso(id) {
                     )
                 }
             }
+            document.getElementById("loading-certificate").style.display = "none";
         }, true);
     });
 }
@@ -98,4 +102,7 @@ $(document).ready(() => {
         console.log(curso);
         alterarCurso(curso, id);
     })
+
+    /* Select more 'beautiful' */
+
 })
