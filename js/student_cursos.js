@@ -8,6 +8,9 @@ function listaCursosCadastrados() {
                 "</div>"
             );
         }
+
+        $("#loading").remove();
+        $("#cursosEncontrados").show();
     }, true);
 }
 

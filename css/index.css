@@ -145,3 +145,16 @@ a:focus {
 #menu * {
     color: white;
 }
+
+/* DESIGN DA PARTE DO STUDENT */
+.cursoEncontrado{
+    cursor: pointer;
+}
+
+.cursoEncontrado:hover{
+    box-shadow:0 1rem 3rem rgba(0,0,0,.175)!important;
+}
+
+.cursoEncontrado img{
+    height: 150px;
+}
