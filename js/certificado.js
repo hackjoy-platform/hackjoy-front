@@ -46,7 +46,7 @@ $(document).ready(() => {
     $("#cadastroCurriculo").on("click", (e) => {
         e.preventDefault();
 
-        let name = $("#nome").val();
+        let name = $("#name").val();
         let image = imagemEmBase64;
         let phrase = $("#frase").val();
 

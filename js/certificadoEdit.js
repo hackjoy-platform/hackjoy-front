@@ -20,9 +20,12 @@ function verCertificado(id) {
         image = data["image"];
 
         document.getElementById("name").value = data["name"];
-        $("#frase").append(data['phrase']);
+        $("#frase").html(data['phrase']);
 
-        iniciaSummernote()
+        iniciaSummernote();
+
+        $('.note-editable').css('background-image', 'url(data:image/png;base64,' + image + ')');
+        $('.note-editable').css('background-size', '842px 595px');
     });
 }
 

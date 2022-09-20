@@ -82,8 +82,14 @@ $(document).ready(() => {
     $('#editCurso').on('click', (e) => {
         e.preventDefault();
 
+        let resultImage = image;
         if (imagemEmBase64 != null) {
             image = imagemEmBase64;
+
+            resultImage = image.replace("data:image/jpeg;base64,", "");
+            resultImage = image.replace("data:image/jpg;base64,", "");
+            resultImage = image.replace("data:image/webp;base64,", "");
+            resultImage = image.replace("data:image/png;base64,", "");
         }
 
         let selectCertificate = document.getElementById("list");
@@ -96,7 +102,7 @@ $(document).ready(() => {
             "about": document.getElementById("about").value,
             "description": document.getElementById("description").value,
             "id_certificate": match,
-            "image": image,
+            "image": resultImage,
         }
 
         console.log(curso);
