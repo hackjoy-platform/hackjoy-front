@@ -20,12 +20,14 @@ function verCertificado(id) {
         image = data["image"];
 
         document.getElementById("name").value = data["name"];
+        document.getElementById("loading-name").style.display = "none";
         $("#frase").html(data['phrase']);
 
         iniciaSummernote();
 
         $('.note-editable').css('background-image', 'url(data:image/png;base64,' + image + ')');
         $('.note-editable').css('background-size', '842px 595px');
+        document.getElementById("loading-image").style.display = "none";
     });
 }
 
@@ -92,11 +94,16 @@ $(document).ready(() => {
 
         if (imagemEmBase64 != null) {
             image = imagemEmBase64;
+
+            resultImage = image.replace("data:image/jpeg;base64,", "");
+            resultImage = image.replace("data:image/jpg;base64,", "");
+            resultImage = image.replace("data:image/webp;base64,", "");
+            resultImage = image.replace("data:image/png;base64,", "");
         }
 
         let certificado = {
             "name": document.getElementById('name').value,
-            "image": image,
+            "image": resultImage,
             "phrase": document.getElementById('frase').value,
         }
 

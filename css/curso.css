@@ -1,3 +1,7 @@
+#editCurso {
+    background-color: green;
+}
+
 * {
     box-sizing: border-box;
 }
@@ -163,9 +167,12 @@ input:focus~.highlight {
 }
 
 /* Configuração do loading */
+
 .position-loading {
-    position: absolute;
-    margin-left: -5%;
+    /*position: absolute;
+    margin-left: -5%;*/
+    margin-top: -70px;
+    margin-bottom: 40px;
 }
 
 .lds-ellipsis {

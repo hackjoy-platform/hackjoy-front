@@ -14,12 +14,13 @@ function carregaCurso() {
                 "</td>" +
 
                 "<td>" +
-                "<a href='../html/cursoEdit.html?id=" + listCurso[i]["id"] + "' class='btn btn-outline-secondary' id_curso=" + listCurso[i]["id"] + ">Abrir Curso</a>" +
+                "<a href='../html/cursoEdit.html?id=" + listCurso[i]["id"] + "' class='btn btn-primary' id_curso=" + listCurso[i]["id"] + ">Abrir Curso</a>" +
                 "</td>" +
 
                 "</tr>"
             );
         }
+        document.getElementById("loading-certificate").style.display = "none";
     }, true);
 }
 

@@ -14,12 +14,13 @@ function carregaCertificados() {
                 "</td>" +
 
                 "<td>" +
-                "<a href='../html/certificadoEdit.html?id=" + listCertificado[i]["id"] + "' class='btn btn-outline-secondary' id_certificado=" + listCertificado[i]["id"] + ">Abrir Certificado</a>" +
+                "<a href='../html/certificadoEdit.html?id=" + listCertificado[i]["id"] + "'class='btn btn-primary' id_certificado=" + listCertificado[i]["id"] + ">Abrir Certificado</a>" +
                 "</td>" +
 
                 "</tr>"
             );
         }
+        document.getElementById("loading-certificate").style.display = "none";
     }, true);
 }
 
