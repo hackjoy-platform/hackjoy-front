@@ -13,7 +13,7 @@ function ajaxDinamico(url, tipo, dados, sucesso, token = "") {
         error: function (response) {
             console.error(response);
 
-            //swal(response.responseJSON[0], "", "error");
+            swal(response.responseJSON[0], "", "error");
         }
     });
 }
@@ -74,6 +74,12 @@ function setToken(token) {
 
 function getToken() {
     return sessionStorage.getItem("token");
+}
+
+function getParametroPorChave(chave){
+    const queryString = window.location.search;
+    const urlParams = new URLSearchParams(queryString);
+    return urlParams.get(chave);
 }
 
 $(document).ready(function () {
