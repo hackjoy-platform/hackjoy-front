@@ -1,6 +1,7 @@
 let imagemEmBase64 = null;
 let image = 0;
-var listVideo;
+var arrayDosVideosCarregados;
+var objetoDosVideosCarregados;
 
 function imagemAlterada(event) {
     var reader = new FileReader();
@@ -40,7 +41,6 @@ function alterarCurso(curso, id) {
 function verCurso(id) {
 
     get("https://hackjoy-api.herokuapp.com/courses/" + id, {}, function (data, textStatus, xhr) {
-        console.log(data);
 
         image = data["image"];
 
@@ -55,7 +55,6 @@ function verCurso(id) {
         get("https://hackjoy-api.herokuapp.com/certificates", {}, function (data, textStatus, xhr) {
 
             var listCertificado = data;
-            console.log(listCertificado);
 
             for (let i = 0; i < data.length; i++) {
                 if (idCertificadoCurso == listCertificado[i]["id"]) {
@@ -77,28 +76,34 @@ function carregaVideo(id) {
 
     get("https://hackjoy-api.herokuapp.com/contents/organized/course/" + id, {}, function (data, textStatus, xhr) {
 
-        listVideo = data;
-        console.log(listVideo);
+        objetoDosVideosCarregados = data;
+        arrayDosVideosCarregados = [];
 
-        if (listVideo.length == 0) {
-            $("#list tbody").append(
+        if (Array.isArray(objetoDosVideosCarregados) && objetoDosVideosCarregados.length == 0) {
+            $("#listaDeVideosCadastrados tbody").append(
                 "<p class='titulos'>Não possui video cadastrado</p>"
-            )
+            );
+            
+            objetoDosVideosCarregados = null;
         } else {
-            for (let i = 0; i < data.length; i++) {
-                $("#list tbody").append(
+            let i = 0;
+            for (const indice in objetoDosVideosCarregados) {
+                arrayDosVideosCarregados[i] = objetoDosVideosCarregados[indice]["id"];
+
+                $("#listaDeVideosCadastrados tbody").append(
                     "<tr>" +
-                    "<th scope='row'>" + listVideo[i]["id"] + "</th>" +
+                    "<th scope='row'>" + objetoDosVideosCarregados[indice]["id"] + "</th>" +
                     "<td>" +
-                    listVideo[i]["name"] +
+                    objetoDosVideosCarregados[indice]["name"] +
                     "</td>" +
 
                     "<td>" +
-                    "<a" /*href='../html/cursoEdit.html?id="*/ + listVideo[i]["id"] + "' class='btn btn-outline-secondary' id_curso=" + listVideo[i]["id"] + ">Abrir Curso</a>" +
+                    "<a" /*href='../html/cursoEdit.html?id="*/ + objetoDosVideosCarregados[indice]["id"] + "' class='btn btn-outline-secondary' id_curso=" + objetoDosVideosCarregados[indice]["id"] + ">Abrir Curso</a>" +
                     "</td>" +
-
                     "</tr>"
-                )
+                );
+
+                i++;
             }
         }
 
@@ -111,8 +116,8 @@ function cadastrarVideo(video, content) {
         "content": content,
         "video": video,
     }
-    console.log("Chegou no cadastrarVideo");
-    post("https://hackjoy-api.herokuapp.com/courses/new", conteudo, function (data, textStatus, xhr) {
+
+    post("https://hackjoy-api.herokuapp.com/videos/new", conteudo, function (data, textStatus, xhr) {
         console.log("Foi para o banco");
         if (typeof data == "object") {
             swal({
@@ -145,7 +150,7 @@ $(document).ready(() => {
         let content = {
             "id_course": id,
             "name": document.getElementById("nameVideo").value,
-            "sequence_number": listVideo.length + 1,
+            "sequence_number": arrayDosVideosCarregados.length + 1,
             "entity": "Video",
         }
 
@@ -178,7 +183,6 @@ $(document).ready(() => {
             "image": resultImage,
         }
 
-        console.log(curso);
         alterarCurso(curso, id);
     })
 
