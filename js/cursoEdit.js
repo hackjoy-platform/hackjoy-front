@@ -1,5 +1,6 @@
 let imagemEmBase64 = null;
 let image = 0;
+var listVideo;
 
 function imagemAlterada(event) {
     var reader = new FileReader();
@@ -72,12 +73,84 @@ function verCurso(id) {
     });
 }
 
+function carregaVideo(id) {
+
+    get("https://hackjoy-api.herokuapp.com/contents/organized/course/" + id, {}, function (data, textStatus, xhr) {
+
+        listVideo = data;
+        console.log(listVideo);
+
+        if (listVideo.length == 0) {
+            $("#list tbody").append(
+                "<p class='titulos'>Não possui video cadastrado</p>"
+            )
+        } else {
+            for (let i = 0; i < data.length; i++) {
+                $("#list tbody").append(
+                    "<tr>" +
+                    "<th scope='row'>" + listVideo[i]["id"] + "</th>" +
+                    "<td>" +
+                    listVideo[i]["name"] +
+                    "</td>" +
+
+                    "<td>" +
+                    "<a" /*href='../html/cursoEdit.html?id="*/ + listVideo[i]["id"] + "' class='btn btn-outline-secondary' id_curso=" + listVideo[i]["id"] + ">Abrir Curso</a>" +
+                    "</td>" +
+
+                    "</tr>"
+                )
+            }
+        }
+
+    })
+}
+
+function cadastrarVideo(video, content) {
+
+    let conteudo = {
+        "content": content,
+        "video": video,
+    }
+    console.log("Chegou no cadastrarVideo");
+    post("https://hackjoy-api.herokuapp.com/courses/new", conteudo, function (data, textStatus, xhr) {
+        console.log("Foi para o banco");
+        if (typeof data == "object") {
+            swal({
+                title: "Cadastrado com sucesso!",
+                icon: "success",
+                buttons: true,
+                dangerMode: false,
+            })
+        }
+    });
+}
+
 $(document).ready(() => {
 
     let getUrl = (window.location).href;
     let id = getUrl.substring(getUrl.lastIndexOf('=') + 1);
 
     verCurso(id);
+    carregaVideo(id);
+
+    $('#adicionar').on('click', (e) => {
+        e.preventDefault();
+
+        let video = {
+            "name": document.getElementById("nameVideo").value,
+            "link": document.getElementById("linkVideo").value,
+            "workload": document.getElementById("workloadVideo").value,
+        }
+
+        let content = {
+            "id_course": id,
+            "name": document.getElementById("nameVideo").value,
+            "sequence_number": listVideo.length + 1,
+            "entity": "Video",
+        }
+
+        cadastrarVideo(video, content);
+    })
 
     $('#editCurso').on('click', (e) => {
         e.preventDefault();
@@ -108,7 +181,5 @@ $(document).ready(() => {
         console.log(curso);
         alterarCurso(curso, id);
     })
-
-    /* Select more 'beautiful' */
 
 })
