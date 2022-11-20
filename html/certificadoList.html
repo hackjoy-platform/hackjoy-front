@@ -46,37 +46,13 @@
                         <span></span>
                     </button>
                 </div>
+
+
                 <ul class="nav nav-pills flex-column mb-auto mb-0 align-items-start" id="menu">
                     <li class="nav-item">
-                        <a href="#" class="nav-link align-middle px-0">
+                        <a href="painel_instructor.html" class="nav-link align-middle px-0">
                             <i class="fs-4 bi-house"></i> <span class="ms-1 d-sm-inline">Pagina principal</span>
                         </a>
-                    </li>
-                    <li>
-                        <a href="#" class="nav-link px-0 align-middle">
-                            <i class="fs-4 bi-table"></i> <span class="ms-1  d-sm-inline">Calendario de
-                                provas</span></a>
-                    </li>
-                    <li>
-                        <a href="#submenu2" data-bs-toggle="collapse" class="nav-link px-0 align-middle ">
-                            <i class="fs-4 bi bi-chat-left-dots"></i> <span id="message"
-                                class="ms-1  d-sm-inline">Mensagens <i id="iconArrow"
-                                    class="bi bi-arrow-down-circle"></i></span>
-                        </a>
-                        <ul class="collapse nav flex-column ms-1" id="submenu2" data-bs-parent="#menu">
-                            <li class="w-100">
-                                <a href="#" class="nav-link px-0"> <span class=" d-sm-inline">Professores</span>
-                                </a>
-                            </li>
-                            <li class="w-100">
-                                <a href="#" class="nav-link px-0"> <span class=" d-sm-inline">Alunos</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#" class="nav-link px-0"> <span class=" d-sm-inline">Amigos</span>
-                                </a>
-                            </li>
-                        </ul>
                     </li>
                     <li>
                         <a href="#submenu3" data-bs-toggle="collapse" class="nav-link px-0 align-middle">
@@ -84,6 +60,10 @@
                                     class="bi bi-arrow-down-circle"></i></span>
                         </a>
                         <ul class="collapse nav flex-column ms-1" id="submenu3" data-bs-parent="#menu">
+                            <li class="w-100">
+                                <a href="cursoList.html" class="nav-link px-0"> <span class=" d-sm-inline">Cursos cadastrados</span>
+                                </a>
+                            </li>
                             <li class="w-100">
                                 <a href="curso.html" class="nav-link px-0"> <span class=" d-sm-inline">Cadastrar
                                         Curso</span>
@@ -99,7 +79,7 @@
                         <ul class="collapse nav flex-column ms-1" id="submenu4" data-bs-parent="#menu">
                             <li class="w-100">
                                 <a href="certificadoList.html" class="nav-link px-0"> <span
-                                        class=" d-sm-inline">Visualizar Certificado</span>
+                                        class=" d-sm-inline">Certificados cadastrados</span>
                                 </a>
                             </li>
                             <li>
@@ -109,12 +89,9 @@
                             </li>
                         </ul>
                     </li>
-                    <li>
-                        <a href="#" class="nav-link px-0 align-middle">
-                            <i class="fs-4 bi-people"></i> <span class="ms-1  d-sm-inline">Colegas</span>
-                        </a>
-                    </li>
                 </ul>
+
+
                 <hr>
                 <div class="dropdown pb-4" id="user">
                     <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle"
@@ -161,6 +138,8 @@
                 <div class="col">
                     <div class="shadow-sm p-3 mb-5 bg-white rounded">
                         <div class="container-fluid">
+                            <h1>Cartificados cadastrados</h1>
+
                             <div>
                                 <!-- Começo textos Pagina -->
                                 <table class="table" id="list">
