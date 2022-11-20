@@ -9,6 +9,9 @@
     <title>Hack.joy</title>
 
     <link rel="stylesheet" type="text/css" href="../css/index.css">
+    <link href="https://fonts.cdnfonts.com/css/valorant" rel="stylesheet">
+
+    <script src="../js/index.js" defer></script>
 
     <link rel="stylesheet"
         href="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.min.css">
@@ -18,20 +21,9 @@
 
     <link rel="shortcut icon" href="../Image/favicon.ico" type="image/x-icon">
 
-
-    <!-- summernote css -->
-    <link href="../imports/summernote-0.8.11-dist/dist/summernote-bs4.css" rel="stylesheet">
-    <style>
-        .note-editable {
-            font-family: "Arial" !important;
-            font-size: 24px !important;
-            line-height: 1;
-        }
-    </style>
 </head>
 
 <body>
-
     <div class="wrapper">
         <div class="col-auto col-md-3 col-xl-2 bg-dark" id="sidebar">
             <div class="d-flex flex-column align-items-start px-3 pt-2 text-white min-vh-100">
@@ -46,59 +38,25 @@
                         <span></span>
                     </button>
                 </div>
-
-
                 <ul class="nav nav-pills flex-column mb-auto mb-0 align-items-start" id="menu">
                     <li class="nav-item">
-                        <a href="painel_instructor.html" class="nav-link align-middle px-0">
+                        <a href="painel_student.html" class="nav-link align-middle px-0">
                             <i class="fs-4 bi-house"></i> <span class="ms-1 d-sm-inline">Pagina principal</span>
                         </a>
                     </li>
-                    <li>
-                        <a href="#submenu3" data-bs-toggle="collapse" class="nav-link px-0 align-middle">
-                            <i class="fs-4 bi bi-person-square"></i> <span class="ms-1  d-sm-inline">Cursos <i
-                                    class="bi bi-arrow-down-circle"></i></span>
+                    <li class="nav-item">
+                        <a href="student_meus_cursos.html" class="nav-link align-middle px-0">
+                            <i class="fs-4 bi-table"></i> <span class="ms-1 d-sm-inline">Meus cursos</span>
                         </a>
-                        <ul class="collapse nav flex-column ms-1" id="submenu3" data-bs-parent="#menu">
-                            <li class="w-100">
-                                <a href="cursoList.html" class="nav-link px-0"> <span class=" d-sm-inline">Cursos cadastrados</span>
-                                </a>
-                            </li>
-                            <li class="w-100">
-                                <a href="curso.html" class="nav-link px-0"> <span class=" d-sm-inline">Cadastrar
-                                        Curso</span>
-                                </a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a href="#submenu4" data-bs-toggle="collapse" class="nav-link px-0 align-middle">
-                            <i class="fs-4 bi bi-patch-check"></i> <span class="ms-1  d-sm-inline">Certificados <i
-                                    class="bi bi-arrow-down-circle"></i></span>
-                        </a>
-                        <ul class="collapse nav flex-column ms-1" id="submenu4" data-bs-parent="#menu">
-                            <li class="w-100">
-                                <a href="certificadoList.html" class="nav-link px-0"> <span
-                                        class=" d-sm-inline">Certificados cadastrados</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="certificado.html" class="nav-link px-0"> <span class=" d-sm-inline">Cadastrar
-                                        Certificado</span>
-                                </a>
-                            </li>
-                        </ul>
                     </li>
                 </ul>
-
-
                 <hr>
                 <div class="dropdown pb-4" id="user">
                     <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle"
                         id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
-                        <img src="../Image/perfil.png" id="img_instructor" alt="instructor" width="30" height="30"
+                        <img src="../Image/perfil.png" id="img_student" alt="student" width="30" height="30"
                             class="rounded-circle">
-                        <span id="instructor_name">user</span>
+                        <span id="student_name">user</span>
                     </a>
                     <ul class="dropdown-menu dropdown-menu-dark text-small shadow">
                         <li><a class="dropdown-item" href="#">Configurações</a></li>
@@ -138,22 +96,37 @@
                 <div class="col">
                     <div class="shadow-sm p-3 mb-5 bg-white rounded">
                         <div class="container-fluid">
-                            <h1>Cartificados cadastrados</h1>
+                            <h1 id="nome_do_conteudo_atual"></h1>
+                            <h3 id="nome_do_curso"></h3>
 
-                            <div>
-                                <!-- Começo textos Pagina -->
-                                <table class="table" id="list">
-                                    <thead>
-                                        <tr>
-                                            <th scope="col">#</th>
-                                            <th scope="col">Nome</th>
-                                            <th scope="col">Visualizar</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                    </tbody>
-                                </table>
-                                <!-- Fim textos Pagina -->
+                            <div class="w-100 bg-dark text-center">
+                                <iframe class="w-75" height="400" id="iframeDoVideoAtual" frameborder="0"
+                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                    allowfullscreen>
+                                </iframe>
+                            </div>
+
+                            <div class="row">
+                                <div class="col">
+                                    <div class="shadow-sm p-3 mb-5 bg-white rounded">
+                                        <div class="container-fluid">
+                                            <div>
+                                                <div class="container">
+                                                    <h1 class="titulos">Videos</h1>
+                                                    <table class="table" id="listaDeVideosCadastrados">
+                                                        <thead>
+                                                            <tr>
+                                                                <th scope="col"></th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -188,16 +161,11 @@
     <!-- CDN SweetAlert JS -->
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
-    <!-- Summernote js -->
-    <script src="../imports/summernote-0.8.11-dist/dist/summernote-bs4.min.js" type="text/javascript"
-        charset="utf-8"></script>
-    <script src="../imports/summernote-0.8.11-dist/dist/lang/summernote-pt-BR.js" type="text/javascript"
-        charset="utf-8"></script>
-
     <!-- My js files -->
-    <script src="../js/index.js" defer></script>
-    <script src="../js/certificadoList.js"></script>
+    <script src="../js/visualizar_curso.js"></script>
 
+    <script>
+    </script>
 </body>
 
 </html>

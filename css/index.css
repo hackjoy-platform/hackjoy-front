@@ -158,3 +158,15 @@ a:focus {
 .cursoEncontrado img{
     height: 150px;
 }
+
+.assistirVideo{
+    cursor: pointer;
+}
+
+.assistirVideo:hover{
+    background-color: #cccccc;
+}
+
+.videoSelecionado{
+    background-color: #cccccc !important;
+}
