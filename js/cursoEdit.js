@@ -72,12 +72,107 @@ function verCurso(id) {
     });
 }
 
+<<<<<<< Updated upstream
+=======
+function carregaVideo(id) {
+
+    get("https://hackjoy-api.herokuapp.com/contents/organized/course/" + id, {}, function (data, textStatus, xhr) {
+
+        objetoDosVideosCarregados = data;
+        arrayDosVideosCarregados = [];
+
+        if (Array.isArray(objetoDosVideosCarregados) && objetoDosVideosCarregados.length == 0) {
+            $("#listaDeVideosCadastrados tbody").append(
+                "<p class='titulos'>Não possui video cadastrado</p>"
+            );
+
+            objetoDosVideosCarregados = null;
+        } else {
+            let i = 0;
+            for (const indice in objetoDosVideosCarregados) {
+                arrayDosVideosCarregados[i] = objetoDosVideosCarregados[indice]["id"];
+
+                $("#listaDeVideosCadastrados tbody").append(
+                    "<tr>" +
+                    "<td>" +
+                    objetoDosVideosCarregados[indice]["name"] +
+                    "</td>" +
+
+                    "<td>" +
+                    "<a data-bs-toggle='modal' data-bs-target='#AbrirVideo'" + objetoDosVideosCarregados[indice]["id"] + "'class='btn btn-outline-secondary' id_video=" + objetoDosVideosCarregados[indice]["id"] + ">Abrir Video</a>" +
+                    "</td>" +
+                    "</tr>"
+                );
+
+                i++;
+            }
+        }
+
+    })
+}
+
+function cadastrarVideo(video, content) {
+
+    let conteudo = {
+        "content": content,
+        "video": video,
+    }
+
+    post("https://hackjoy-api.herokuapp.com/videos/new", conteudo, function (data, textStatus, xhr) {
+        console.log("Foi para o banco");
+        if (typeof data == "object") {
+            swal({
+                title: "Cadastrado com sucesso!",
+                icon: "success",
+                buttons: true,
+                dangerMode: false,
+            })
+        }
+    });
+}
+
+>>>>>>> Stashed changes
 $(document).ready(() => {
 
     let getUrl = (window.location).href;
     let id = getUrl.substring(getUrl.lastIndexOf('=') + 1);
 
     verCurso(id);
+<<<<<<< Updated upstream
+=======
+    carregaVideo(id);
+
+    $('#AbrirVideo').on('click', (e) => {
+        e.preventDefault();
+        console.log("ele abriu");
+
+        get("https://hackjoy-api.herokuapp.com/contents/organized/course/" + id, {}, function (data, textStatus, xhr) {
+
+            document.getElementById("editNameVideo").value = data["name"];
+            document.getElementById("editLinkVideo").value = data["link"];
+            document.getElementById("editWorkloadVideo").value = data["workload"];
+        })
+    })
+
+    $('#adicionar').on('click', (e) => {
+        e.preventDefault();
+
+        let video = {
+            "name": document.getElementById("nameVideo").value,
+            "link": document.getElementById("linkVideo").value,
+            "workload": document.getElementById("workloadVideo").value,
+        }
+
+        let content = {
+            "id_course": id,
+            "name": document.getElementById("nameVideo").value,
+            "sequence_number": arrayDosVideosCarregados.length + 1,
+            "entity": "Video",
+        }
+
+        cadastrarVideo(video, content);
+    })
+>>>>>>> Stashed changes
 
     $('#editCurso').on('click', (e) => {
         e.preventDefault();
