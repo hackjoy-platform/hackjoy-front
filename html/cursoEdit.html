@@ -52,7 +52,8 @@
                         </a>
                         <ul class="collapse nav flex-column ms-1" id="submenu3" data-bs-parent="#menu">
                             <li class="w-100">
-                                <a href="cursoList.html" class="nav-link px-0"> <span class=" d-sm-inline">Cursos cadastrados</span>
+                                <a href="cursoList.html" class="nav-link px-0"> <span class=" d-sm-inline">Cursos
+                                        cadastrados</span>
                                 </a>
                             </li>
                             <li class="w-100">
@@ -239,6 +240,46 @@
                                         <tbody>
                                         </tbody>
                                     </table>
+                                    <!-- Modal -->
+                                    <div class="modal fade" id="OpenVideo" tabindex="-1" aria-labelledby="OpenVideo"
+                                        aria-hidden="true">
+                                        <div class="modal-dialog modal-dialog-centered">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="OpenVideo">Adicionar Vídeo</h5>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                        aria-label="Close"></button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <div class="group">
+                                                        <input id="infoNameVideo" type="text" required>
+                                                        <span class="highlight"></span>
+                                                        <span class="bar"></span>
+                                                        <label>Nome do vídeo</label>
+                                                    </div>
+                                                    <div class="group">
+                                                        <input id="infoLinkVideo" type="text" required>
+                                                        <span class="highlight"></span>
+                                                        <span class="bar"></span>
+                                                        <label>Link do vídeo</label>
+                                                    </div>
+                                                    <div class="group">
+                                                        <input id="infoWorkloadVideo" type="text" required>
+                                                        <span class="highlight"></span>
+                                                        <span class="bar"></span>
+                                                        <label>Tempo de duração</label>
+                                                    </div>
+                                                    <br>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary"
+                                                        data-bs-dismiss="modal">Fechar</button>
+                                                    <button type="button" class="btn btn-primary atualizarVideo"
+                                                        id="atualizarVideo">Atualizar!</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                     <button class="btn btn-info btn-lg" type="button" data-bs-toggle="modal"
                                         data-bs-target="#exampleModal">Adicionar
                                         Vídeo</button>
