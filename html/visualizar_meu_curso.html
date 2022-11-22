@@ -9,6 +9,7 @@
     <title>Hack.joy</title>
 
     <link rel="stylesheet" type="text/css" href="../css/index.css">
+    <link rel="stylesheet" type="text/css" href="../css/curso.css">
     <link href="https://fonts.cdnfonts.com/css/valorant" rel="stylesheet">
 
     <script src="../js/index.js" defer></script>
@@ -92,12 +93,19 @@
                     </div>
                 </div>
             </div>
-            <div class="row">
+
+            <div class="w-100 text-center" id="loadingPainelDoCurso">
+                <div class="spinner-border text-danger" role="status" id="loading">
+                    <span class="visually-hidden">Loading...</span>
+                </div>
+            </div>
+
+            <div class="row" id="painelDoCurso" style="display: none;">
                 <div class="col">
                     <div class="shadow-sm p-3 mb-5 bg-white rounded">
                         <div class="container-fluid">
-                            <h1 id="nome_do_conteudo_atual"></h1>
-                            <h3 id="nome_do_curso"></h3>
+                            <h2 class="titulos" id="nome_do_conteudo_atual"></h2>
+                            <h4 class="titulos" id="nome_do_curso"></h4>
 
                             <div class="w-100 bg-dark text-center">
                                 <iframe class="w-75" height="400" id="iframeDoVideoAtual" frameborder="0"

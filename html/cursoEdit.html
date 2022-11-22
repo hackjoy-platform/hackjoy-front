@@ -41,19 +41,18 @@
 
                 <ul class="nav nav-pills flex-column mb-auto mb-0 align-items-start" id="menu">
                     <li class="nav-item">
-                        <a href="#" class="nav-link align-middle px-0">
+                        <a href="painel_instructor.html" class="nav-link align-middle px-0">
                             <i class="fs-4 bi-house"></i> <span class="ms-1 d-sm-inline">Pagina principal</span>
                         </a>
                     </li>
                     <li>
-                        <a href="painel_instructor.html" data-bs-toggle="collapse" class="nav-link px-0 align-middle">
+                        <a href="#submenu3" data-bs-toggle="collapse" class="nav-link px-0 align-middle">
                             <i class="fs-4 bi bi-person-square"></i> <span class="ms-1  d-sm-inline">Cursos <i
                                     class="bi bi-arrow-down-circle"></i></span>
                         </a>
                         <ul class="collapse nav flex-column ms-1" id="submenu3" data-bs-parent="#menu">
                             <li class="w-100">
-                                <a href="cursoList.html" class="nav-link px-0"> <span class=" d-sm-inline">Cursos
-                                        cadastrados</span>
+                                <a href="cursoList.html" class="nav-link px-0"> <span class=" d-sm-inline">Cursos cadastrados</span>
                                 </a>
                             </li>
                             <li class="w-100">
@@ -130,7 +129,7 @@
                 <div class="col">
                     <div class="shadow-sm p-3 mb-5 bg-white rounded">
                         <div class="container-fluid">
-                            <h1>Visualizar curso</h1>
+                            <h1 class="titulos">Visualizar curso</h1>
 
                             <div>
                                 <!-- Começo textos Pagina -->
@@ -207,8 +206,8 @@
                                                 accept="image/*" required>
                                         </div>
                                         <div>
-                                            <button class="btn btn-secondary btn-lg" type="button"
-                                                id="editCurso">Enviar</button>
+                                            <button class="btn btn-success btn-lg" type="button"
+                                                id="editCurso">Salvar</button>
                                         </div>
 
 
@@ -229,10 +228,16 @@
                             <div>
                                 <div class="container">
                                     <h1 class="titulos">Videos</h1>
-                                    <table class="table" id="listaDeVideosCadastrados">
+
+                                    <div id="loadingVideosCadastrados">
+                                        <div class="spinner-border text-danger" role="status">
+                                            <span class="visually-hidden">Loading...</span>
+                                        </div>
+                                    </div>
+
+                                    <table class="table" id="listaDeVideosCadastrados" style="display: none;">
                                         <thead>
                                             <tr>
-                                                <th scope="col">#</th>
                                                 <th scope="col">Nome</th>
                                                 <th scope="col">Visualizar</th>
                                             </tr>
@@ -240,13 +245,14 @@
                                         <tbody>
                                         </tbody>
                                     </table>
+
                                     <!-- Modal -->
                                     <div class="modal fade" id="OpenVideo" tabindex="-1" aria-labelledby="OpenVideo"
                                         aria-hidden="true">
                                         <div class="modal-dialog modal-dialog-centered">
                                             <div class="modal-content">
                                                 <div class="modal-header">
-                                                    <h5 class="modal-title" id="OpenVideo">Adicionar Vídeo</h5>
+                                                    <h5 class="modal-title" id="OpenVideo">Atualizar Vídeo</h5>
                                                     <button type="button" class="btn-close" data-bs-dismiss="modal"
                                                         aria-label="Close"></button>
                                                 </div>
@@ -275,14 +281,15 @@
                                                     <button type="button" class="btn btn-secondary"
                                                         data-bs-dismiss="modal">Fechar</button>
                                                     <button type="button" class="btn btn-primary atualizarVideo"
-                                                        id="atualizarVideo">Atualizar!</button>
+                                                        id="atualizarVideo">Atualizar</button>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                    <button class="btn btn-info btn-lg" type="button" data-bs-toggle="modal"
+
+                                    <button class="btn btn-primary btn-lg" type="button" data-bs-toggle="modal"
                                         data-bs-target="#exampleModal">Adicionar
-                                        Vídeo</button>
+                                        vídeo</button>
 
                                     <!-- Modal -->
                                     <div class="modal fade" id="exampleModal" tabindex="-1"
@@ -319,7 +326,7 @@
                                                     <button type="button" class="btn btn-secondary"
                                                         data-bs-dismiss="modal">Fechar</button>
                                                     <button type="button" class="btn btn-primary adicionar"
-                                                        id="adicionar">Adicionar!</button>
+                                                        id="adicionar">Adicionar</button>
                                                 </div>
                                             </div>
                                         </div>

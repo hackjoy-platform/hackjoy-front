@@ -9,6 +9,8 @@
     <title>Hack.joy</title>
 
     <link rel="stylesheet" type="text/css" href="../css/index.css">
+    <link rel="stylesheet" type="text/css" href="../css/curso.css">
+    <link href="https://fonts.cdnfonts.com/css/valorant" rel="stylesheet">
 
     <link rel="stylesheet"
         href="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.min.css">
@@ -138,14 +140,19 @@
                 <div class="col">
                     <div class="shadow-sm p-3 mb-5 bg-white rounded">
                         <div class="container-fluid">
-                            <h1>Cartificados cadastrados</h1>
+                            <h1 class="titulos">Certificados cadastrados</h1>
 
-                            <div>
+                            <div id="loadingCertificadosCadastrados">
+                                <div class="spinner-border text-danger" role="status">
+                                    <span class="visually-hidden">Loading...</span>
+                                </div>
+                            </div>
+
+                            <div id="tabelaCertificadosCadastrados" style="display: none;">
                                 <!-- Começo textos Pagina -->
                                 <table class="table" id="list">
                                     <thead>
                                         <tr>
-                                            <th scope="col">#</th>
                                             <th scope="col">Nome</th>
                                             <th scope="col">Visualizar</th>
                                         </tr>

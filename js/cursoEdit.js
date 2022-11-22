@@ -2,6 +2,7 @@ let imagemEmBase64 = null;
 let image = 0;
 var arrayDosVideosCarregados;
 var objetoDosVideosCarregados;
+var idDoCurso = 0;
 
 function imagemAlterada(event) {
     var reader = new FileReader();
@@ -79,6 +80,8 @@ function carregaVideo(id) {
         objetoDosVideosCarregados = data;
         arrayDosVideosCarregados = [];
 
+        $(".videoEncontrado").remove();
+
         if (Array.isArray(objetoDosVideosCarregados) && objetoDosVideosCarregados.length == 0) {
             $("#listaDeVideosCadastrados tbody").append(
                 "<p class='titulos'>Não possui video cadastrado</p>"
@@ -91,14 +94,17 @@ function carregaVideo(id) {
                 arrayDosVideosCarregados[i] = objetoDosVideosCarregados[indice]["id"];
 
                 $("#listaDeVideosCadastrados tbody").append(
-                    "<tr>" +
-                    "<th scope='row'>" + objetoDosVideosCarregados[indice]["id"] + "</th>" +
+                    "<tr class='videoEncontrado'>" +
                     "<td>" +
                     objetoDosVideosCarregados[indice]["name"] +
                     "</td>" +
 
                     "<td>" +
-                    "<a data-bs-toggle='modal' data-bs-target='#OpenVideo' id=" + parseInt(i + 1) + " class='btn btn-outline-secondary openVideoClass' id_curso=" + objetoDosVideosCarregados[indice]["id"] + ">Abrir Curso</a>" +
+                    "<a data-bs-toggle='modal' data-bs-target='#OpenVideo' id_video=" + parseInt(i + 1) + " class='btn btn-primary openVideoClass'" +
+                    "id_curso='" + objetoDosVideosCarregados[indice]["id"] + "'" +
+                    "nomeVideo='" + objetoDosVideosCarregados[indice]["name"] + "'" +
+                    "linkVideo='" + objetoDosVideosCarregados[indice]["link"] + "'" +
+                    "duracaoVideo='" + objetoDosVideosCarregados[indice]["workload"] + "'>Editar vídeo</a>" +
                     "</td>" +
                     "</tr>"
                 );
@@ -107,6 +113,8 @@ function carregaVideo(id) {
             }
         }
 
+        $("#loadingVideosCadastrados").hide();
+        $("#listaDeVideosCadastrados").show();
     })
 }
 
@@ -125,39 +133,20 @@ function cadastrarVideo(video, content) {
                 buttons: true,
                 dangerMode: false,
             })
+
+            $("#listaDeVideosCadastrados").hide();
+            $("#loadingVideosCadastrados").show();
+            carregaVideo(idDoCurso);
         }
     });
 }
 
-function infoVideo(idVideo, id) {
-
-    get("https://hackjoy-api.herokuapp.com/contents/organized/course/" + id, {}, function (data, textStatus, xhr) {
-
-        objetoDosVideosCarregados = data;
-        console.log(data);
-        arrayDosVideosCarregados = [];
-
-        let i = 0;
-        for (const indice in objetoDosVideosCarregados) {
-            arrayDosVideosCarregados[i] = objetoDosVideosCarregados[indice]["id"];
-
-
-            if (indice == idVideo) {
-                document.getElementById("infoNameVideo").value = objetoDosVideosCarregados[indice]["name"];
-                document.getElementById("infoLinkVideo").value = objetoDosVideosCarregados[indice]["link"];
-                document.getElementById("infoWorkloadVideo").value = objetoDosVideosCarregados[indice]["workload"];
-
-            }
-
-            i++;
-        }
-    })
-}
-
 function atualizarVideo(conteudo, idVideo) {
-    console.log("entrou no put");
+    console.log(idVideo);
+    
     put("https://hackjoy-api.herokuapp.com/videos/" + idVideo, conteudo, function (data, textStatus, xhr) {
-        console.log("passou para o banco");
+        console.log("data: ");
+        console.log(data);
         if (typeof data == "object") {
             swal({
                 title: "Atualizado com sucesso!",
@@ -166,24 +155,32 @@ function atualizarVideo(conteudo, idVideo) {
                 dangerMode: false,
             })
         }
+
+        $("#listaDeVideosCadastrados").hide();
+        $("#loadingVideosCadastrados").show();
+        carregaVideo(idDoCurso);
     })
 }
 
 $(document).ready(() => {
 
     let getUrl = (window.location).href;
-    let id = getUrl.substring(getUrl.lastIndexOf('=') + 1);
+    idDoCurso = getUrl.substring(getUrl.lastIndexOf('=') + 1);
     let idVideo = 0;
 
-    verCurso(id);
-    carregaVideo(id);
+    verCurso(idDoCurso);
+    carregaVideo(idDoCurso);
 
     $(document).on('click', ".openVideoClass", function () {
+        idVideo = $(this).attr("id_video");
 
-        idVideo = $(this).attr("id");
+        let nomeDoVideoSelecionado = $(this).attr("nomeVideo");
+        let urlDoVideoSelecionado = $(this).attr("linkVideo");
+        let duracaoDoVideoSelecionado = $(this).attr("duracaoVideo");
 
-        infoVideo(idVideo, id);
-
+        document.getElementById("infoNameVideo").value = nomeDoVideoSelecionado;
+        document.getElementById("infoLinkVideo").value = urlDoVideoSelecionado;
+        document.getElementById("infoWorkloadVideo").value = duracaoDoVideoSelecionado;
     })
 
     $('#atualizarVideo').on('click', (e) => {
@@ -205,6 +202,7 @@ $(document).ready(() => {
             "content": content,
             "video": video,
         }
+
         atualizarVideo(conteudo, idVideo);
     })
 
@@ -218,7 +216,7 @@ $(document).ready(() => {
         }
 
         let content = {
-            "id_course": id,
+            "id_course": idDoCurso,
             "name": document.getElementById("nameVideo").value,
             "sequence_number": arrayDosVideosCarregados.length + 1,
             "entity": "Video",
@@ -253,7 +251,7 @@ $(document).ready(() => {
             "image": resultImage,
         }
 
-        alterarCurso(curso, id);
+        alterarCurso(curso, idDoCurso);
     })
 
 })
