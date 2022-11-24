@@ -9,6 +9,7 @@
 
     <link rel="stylesheet" type="text/css" href="/front-Hackjoy/css/PageMain.css">
     <link rel="stylesheet" href="../css/cadastro.css">
+    <link rel="stylesheet" type="text/css" href="../css/login.css">
 
     <!-- CDN Jquery -->
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
@@ -68,10 +69,19 @@
                                     MAIS
                                 </a>
                                 <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                    <li><a class="dropdown-item">API</a></li>
-                                    <li><a class="dropdown-item">.</a></li>
-                                    <li><a class="dropdown-item"> Something else here</a></li>
-                                    <li><a class="dropdown-item" href="cadastro.html">CADASTRO</a></li>
+                                    <li><a class="dropdown-item" href="#"><i class="bi bi-cast"></i> Produção da nossa
+                                            plataforma</a></li>
+                                    <li><a class="dropdown-item" href="#"><i class="bi bi-people"></i> Sobre nossa
+                                            equipe</a></li>
+                                    <li><a class="dropdown-item" href="#"><i class="bi bi-instagram"></i> MÍDIAS</a>
+                                    </li>
+                                    <li><a class="dropdown-item" href="../html/login.html"><i class="bi bi-person"></i>
+                                            Entrar Como Aluno</a></li>
+                                    <li><a class="dropdown-item" href="../html/loginProf.html"><i
+                                                class="bi bi-person"></i> Entrar Como Professor</a>
+                                    </li>
+                                    <li><a class="dropdown-item" href="cadastro.html"><i
+                                                class="bi bi-box-arrow-in-up"></i> Cadastro</a></li>
                                 </ul>
                             </div>
                         </div>
@@ -98,7 +108,7 @@
                     <h1>Entrar</h1>
 
                     <div class="row my-3">
-                        <div class="col-sm-11 col-md-11">
+                        <div class="col-sm-11 col-md-11 col-11">
                             <label for="email_login">Email:</label>
                             <input class="form-control" id="email_login" name="email_login" type="text" required
                                 autofocus />
@@ -107,19 +117,19 @@
 
                     <div class="row my-3">
                         <label for="password_login">Senha:</label>
-                        <div class="col-sm-12 col-md-12 d-flex">
+                        <div class="col-sm-11 col-md-11 d-flex col-11">
                             <input class="form-control" id="password_login" name="password_login" type="password"
                                 required />
                             <i class="lnr-eye fs-1 bi bi-eye" id="openEye"></i>
                             <!--<i class="lnr-eye fs-1 bi bi-eye-slash" id="closeEye"></i>-->
                         </div>
                     </div>
-                    <div class="col-sm-11 col-md-11">
+                    <div class="col-sm-11 col-md-11 col-11">
                         <button id="btnsubmit" type="button">Entrar</button>
                     </div>
 
                     <div class="row my-3">
-                        <div class="col-sm-11 col-md-11">
+                        <div class="col-sm-11 col-md-11 col-11">
                             <p class="link">
                                 Não possui uma conta?
                                 <a href="cadastro.html" style="text-decoration: none;">Ir para cadastro </a>

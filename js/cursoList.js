@@ -20,6 +20,7 @@ function carregaCurso() {
                 "</tr>"
             );
         }
+        $("#loading").remove();
     }, true);
 }
 

@@ -20,6 +20,7 @@ function carregaCertificados() {
                 "</tr>"
             );
         }
+        $("#loading").remove();
     }, true);
 }
 

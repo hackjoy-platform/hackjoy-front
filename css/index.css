@@ -11,6 +11,14 @@
     border-radius: 50%;
 }
 
+.titulos {
+    margin-top: 6%;
+    margin-right: 6%;
+    font-family: 'VALORANT', sans-serif;
+    font-weight: bold;
+    color: red;
+}
+
 body {
     font-family: 'Poppins', sans-serif;
 }
@@ -147,26 +155,26 @@ a:focus {
 }
 
 /* DESIGN DA PARTE DO STUDENT */
-.cursoEncontrado{
+.cursoEncontrado {
     cursor: pointer;
 }
 
-.cursoEncontrado:hover{
-    box-shadow:0 1rem 3rem rgba(0,0,0,.175)!important;
+.cursoEncontrado:hover {
+    box-shadow: 0 1rem 3rem rgba(0, 0, 0, .175) !important;
 }
 
-.cursoEncontrado img{
+.cursoEncontrado img {
     height: 150px;
 }
 
-.assistirVideo{
+.assistirVideo {
     cursor: pointer;
 }
 
-.assistirVideo:hover{
+.assistirVideo:hover {
     background-color: #cccccc;
 }
 
-.videoSelecionado{
+.videoSelecionado {
     background-color: #cccccc !important;
 }
