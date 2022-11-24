@@ -7,6 +7,9 @@ function carregaCurso(id) {
         $("#nome_do_curso").text(data["name"]);
         $("#sobre_o_curso").text(data["about"]);
         $("#descricao_do_curso").text(data["description"]);
+
+        $("#loadingPainelDoCurso").hide();
+        $("#painelDoCurso").show();
     }, true);
 }
 
@@ -51,6 +54,8 @@ function carregaVideo(id) {
             $("#nome_do_conteudo_atual").text(nomeDoPrimeiroVideo);
         }
 
+        $("#loadingPainelDoCurso").hide();
+        $("#painelDoCurso").show();
     })
 }
 
@@ -66,8 +71,7 @@ $(document).ready(() => {
         post("https://hackjoy-api.herokuapp.com/courses/" + getParametroPorChave("id") + "/students/" + getIdUserEntity(), {}, function (data, textStatus, xhr) {
             swal("Curso adquirido com sucesso!", "", "success");
 
-            $("#adquirir_curso").removeAttr("disabled");
-            $("#carregaAdquirirCurso").hide();
+            $("#adquirir_curso").hide();
         }, true);
     });
 

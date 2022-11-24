@@ -9,7 +9,7 @@
     <title>Hack.Joy</title>
 
     <link rel="stylesheet" type="text/css" href="../css/index.css">
-    <link rel="stylesheet" type="text/css" href="">
+    <link rel="stylesheet" type="text/css" href="../css/curso.css">
     <link href="https://fonts.cdnfonts.com/css/valorant" rel="stylesheet">
 
     <link rel="stylesheet"
@@ -132,12 +132,17 @@
                         <div class="container-fluid">
                             <h1 class="titulos">Cursos cadastrados</h1>
 
-                            <div>
+                            <div id="loadingCursosCadastrados">
+                                <div class="spinner-border text-danger" role="status">
+                                    <span class="visually-hidden">Loading...</span>
+                                </div>
+                            </div>
+
+                            <div id="tabelaCursosCadastrados" style="display: none;">
                                 <!-- Começo textos Pagina -->
                                 <table class="table" id="list">
                                     <thead>
                                         <tr>
-                                            <th scope="col">#</th>
                                             <th scope="col">Nome</th>
                                             <th scope="col">Visualizar</th>
                                         </tr>
